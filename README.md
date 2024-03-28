@@ -25,3 +25,7 @@ for nuclei segmentation from whole slide images of tissue sections can be found 
 
 [Trained weights](https://drive.google.com/open?id=16oPaebQnZCMzEsEGvhSVPMvEhbKJPATQ)
 
+# Dataset
+
+Dataset with extracted patches can be found in the following link:
+[Dataset](https://drive.google.com/drive/folders/1hUj9ToCYhIeIDOzfmj8BNp-BgLRRxbJX?usp=sharing)
