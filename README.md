@@ -30,3 +30,9 @@ for nuclei segmentation from whole slide images of tissue sections can be found 
 Dataset with extracted patches can be found in the following link:
 
 [Dataset](https://drive.google.com/drive/folders/1hUj9ToCYhIeIDOzfmj8BNp-BgLRRxbJX?usp=sharing)
+
+Check out other repos :
+
+- https://github.com/ykrmm/monuseg
+- https://github.com/nauyan/Segmentation
+- https://github.com/advaitkumar3107/MoNuSeg
