@@ -40,6 +40,8 @@ args = parser.parse_args()
 path = args.path
 print(path)
 
+assert os.path.exists(path)
+
 img_files = sorted(glob(os.path.join(path, "images", "*.png")))
 label_files = sorted(glob(os.path.join(path, "labels", "*.png")))
 sample_files = sorted(glob(os.path.join(path, "samples", "*.png")))

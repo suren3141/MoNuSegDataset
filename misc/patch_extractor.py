@@ -12,7 +12,6 @@ except ImportError as e:
 
 import os
 
-from torch.utils.tensorboard import SummaryWriter
 
 #####
 class PatchExtractor(object):
@@ -63,6 +62,7 @@ class PatchExtractor(object):
             else:
                 # fig = plt.figure()
                 # plt.imshow(x)
+                from torch.utils.tensorboard import SummaryWriter
 
                 writer = SummaryWriter('log_dir')
                 writer.add_image('image', x, 0, dataformats='HWC')
@@ -165,7 +165,7 @@ class PatchExtractor(object):
 if __name__ == "__main__":
     # toy example for debug
     # 355x355, 480x480
-    xtractor = PatchExtractor((450, 450), (120, 120), debug=True)
+    xtractor = PatchExtractor((450, 450), (120, 120), debug=False)
     a = np.full([1200, 1200, 3], 255, np.uint8)
     xtractor.extract(a, "mirror")
     xtractor.extract(a, "valid")

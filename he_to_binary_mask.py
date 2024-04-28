@@ -14,22 +14,26 @@ from pathlib import Path
 import random
 from tqdm import tqdm
 
-from tifffile import imread, imwrite
+# from tifffile import imread, imwrite
 
 def he_to_mask(im_file, xml_file, out_path=None):
 
     if out_path is not None:
+        os.makedirs(os.path.join(out_path, "rgb_image"), exist_ok =True)
         os.makedirs(os.path.join(out_path, "bin_masks"), exist_ok =True)
-        # os.makedirs(os.path.join(out_path, "instance_masks"), exist_ok =True)
-        os.makedirs(os.path.join(out_path, "masks"), exist_ok =True)
+        os.makedirs(os.path.join(out_path, "inst_masks"), exist_ok =True)
+        # os.makedirs(os.path.join(out_path, "masks"), exist_ok =True)
         os.makedirs(os.path.join(out_path, "overlay"), exist_ok =True)
 
     file_name = Path(im_file).stem
 
     img = Image.open(im_file)
+    rgbimg = Image.new("RGBA", img.size)
+    rgbimg.paste(img)
+
     # img.show()
 
-    img_arr = np.array(img)
+    img_arr = np.array(rgbimg.convert('RGB'))
     binary_mask= np.zeros(img_arr.shape[:2], dtype=np.uint8)
     color_mask= np.zeros(img_arr.shape[:2], dtype=np.uint16)
     overlay = np.array(img_arr).astype(np.uint8)
@@ -55,13 +59,15 @@ def he_to_mask(im_file, xml_file, out_path=None):
         # instance_mask[:,:,c] = np.where(color_mask == c, True, False)
 
 
+    rgbimg.save(os.path.join(out_path, "rgb_image", file_name + ".png"))
 
-    cv2.imwrite(os.path.join(out_path, "bin_masks", file_name + ".png"), binary_mask)
-    # cv2.imwrite(os.path.join(out_path, "masks", file_name + ".png"), color_mask)
-    cv2.imwrite(os.path.join(out_path, "overlay", file_name + ".png"), overlay)
+    Image.fromarray(binary_mask).save(os.path.join(out_path, "bin_masks", file_name + ".png"))
+    Image.fromarray(color_mask).save(os.path.join(out_path, "inst_masks", file_name + ".tif"))
+    Image.fromarray(overlay).save(os.path.join(out_path, "overlay", file_name + ".png"))
 
-
-    # imwrite(os.path.join(out_path, "instance_masks", file_name + ".tif"), instance_mask)#, planarconfig='CONTIG')
+    # cv2.imwrite(os.path.join(out_path, "bin_masks", file_name + ".png"), binary_mask)
+    # cv2.imwrite(os.path.join(out_path, "inst_masks", file_name + ".png"), color_mask)
+    # cv2.imwrite(os.path.join(out_path, "overlay", file_name + ".png"), overlay)
 
     return binary_mask, color_mask
 
