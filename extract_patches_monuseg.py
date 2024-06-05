@@ -79,7 +79,9 @@ if __name__ == "__main__":
     type_classification = False
     out_format = '.png'
 
-    win_size = [256, 256]
+    # win_size = [256, 256]
+    # step_size = [128, 128]
+    win_size = [128, 128]
     step_size = [128, 128]
     extract_type = "valid"  # Choose 'mirror' or 'valid'. 'mirror'- use padding at borders. 'valid'- only extract from valid regions.
 
@@ -87,6 +89,7 @@ if __name__ == "__main__":
     # This used to get the specific dataset img and ann loading scheme from dataset.py
     dataset_name = "monuseg"
     save_root = f"/mnt/dataset/MoNuSeg/patches_{extract_type}_inst"
+    # save_root = f"/mnt/dataset/MoNuSeg/patches_{extract_type}_inst"
 
     # a dictionary to specify where the dataset path should be
     dataset_info = {

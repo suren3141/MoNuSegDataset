@@ -5,10 +5,12 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
-try:
-    from .utils import cropping_center
-except ImportError as e:
-    from utils import cropping_center
+from misc import cropping_center
+
+# try:
+#     from .utils import cropping_center
+# except ImportError as e:
+#     from utils import cropping_center
 
 import os
 
