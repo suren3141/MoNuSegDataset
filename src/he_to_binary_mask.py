@@ -84,8 +84,8 @@ if __name__ == "__main__":
     args = get_args()
 
     split = {
-        'train' : args.train,
-        'test' : args.test
+        'train' : args.train_path,
+        'test' : args.test_path
     }
 
     for s in split:
