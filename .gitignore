@@ -3,3 +3,10 @@ dataset
 patches_*
 
 *.pyc
+
+venv
+monuseg_patches_128CH/
+dataset_col_aug/
+output_cross_image/
+out_sdm/
+TCGA/

@@ -1,5 +1,66 @@
 # [MoNuSeg grand-challenge](https://monuseg.grand-challenge.org/) organized at [MICCAI 2018](https://www.miccai2018.org/en/)
 
+This repository is an extension of the [Mask R-CNN implementation](https://github.com/ruchikaverma-iitg/MoNuSeg) with functionality extended to python.
+
+## Dataset
+
+### Quick run
+Dataset with extracted patches can be found in the following link:
+[Dataset](https://drive.google.com/drive/folders/1hUj9ToCYhIeIDOzfmj8BNp-BgLRRxbJX?usp=sharing)
+
+### Step-by-step instruction
+1. The original dataset can be downloaded from the following link: [https://monuseg.grand-challenge.org/Data/]
+
+The dataset should have the following structure:
+```
+dataset
+├── MoNuSegTrainingData
+│   ├── images
+│   │   ├──TCGA-18-5592-01Z-00-DX1.tif
+│   │   ├──TCGA-21-5784-01Z-00-DX1.tif
+│   │
+│   └── annotations
+│       ├──TCGA-18-5592-01Z-00-DX1.xml
+│       ├──TCGA-21-5784-01Z-00-DX1.xml
+│
+└── MoNuSegTestgData
+    ├── images
+    └── annotations
+```
+
+2. Convert `.xml` files to 2D binary and instance masks of format `.png` and `.tif`
+
+```bash
+python src he_to_binary_mask.py --train_path $PATH_TO_TRAIN_SET --test_path $PATH_TO_TEST_SET
+```
+
+The dataset should then have the following format
+```
+dataset
+├── MoNuSegTrainingData
+│   ├── images
+│   ├── bin_masks
+│   ├── inst_masks
+│   ├── overlay
+│   └── annotations
+│
+└── MoNuSegTestgData
+    ├── images
+    ├── bin_masks
+    ├── inst_masks
+    ├── overlay
+    └── annotations
+```
+
+3. Extract patches from generated images and masks:
+
+```bash
+python src/extract_patches_monuseg.py --data_path $PATH_TO_DATASET --window_size 128 --step_size 128
+```
+
+
+## Citations
+
 Please cite the following papers if you use this repository-
 
 [Kumar, N., Verma R. et al., "A Multi-organ Nucleus Segmentation Challenge," in IEEE Transactions on Medical Imaging 2019](https://ieeexplore.ieee.org/document/8880654)
@@ -8,31 +69,4 @@ Please cite the following papers if you use this repository-
 
 
 
-| **File name** | **Description** |
-| ------------- | ------------- |
-| [Aggregated_Jaccard_Index_v1_0](https://github.com/ruchikaverma-iitg/MoNuSeg/blob/master/Aggregated_Jaccard_Index_v1_0.m) | Compute average AJI across all nuclei for each image|
-| [compute_AJI](https://github.com/RuchikaVermaVaid/MoNuSeg/blob/master/compute_AJI.m) | Compute average AJI (across all nuclei) per image for each participant|
-| [Ensemble_mask](https://github.com/ruchikavermavaid/MoNuSeg/blob/master/ensemble_top_5.m) | Combine instance masks of top 5 techniques to get ensemble mask using majority voting|
-| [correct_nd_missing_nuc_count](https://github.com/RuchikaVermaVaid/MoNuSeg/blob/master/correct_nd_missing_nuc_count.m) | Count correctly classified nuclei and missing nuclei in each predicted mask of top 5 techniques|
-| [he_to_binary_mask_final](https://github.com/ruchikavermavaid/MoNuSeg/blob/master/he_to_binary_mask_final.m) | Use H&E stained image along with associated xml file to generate binary and colored mask|
-| [Nuclei-Segmentation](https://github.com/ruchikaverma-iitg/Nuclei-Segmentation) | An implementation of Mask R-CNN algorithm for nuclei segmentation|
 
-# [Nuclei-Segmentation](https://github.com/ruchikaverma-iitg/Nuclei-Segmentation)
-An implementation of Mask R-CNN algorithm using [Matterport library](https://github.com/matterport/Mask_RCNN)
-for nuclei segmentation from whole slide images of tissue sections can be found from the links given below: 
-
-[Testing code](https://github.com/ruchikaverma-iitg/Nuclei-Segmentation/blob/master/Nuclei_Segmentation_testing_code.ipynb)
-
-[Trained weights](https://drive.google.com/open?id=16oPaebQnZCMzEsEGvhSVPMvEhbKJPATQ)
-
-# Dataset
-
-Dataset with extracted patches can be found in the following link:
-
-[Dataset](https://drive.google.com/drive/folders/1hUj9ToCYhIeIDOzfmj8BNp-BgLRRxbJX?usp=sharing)
-
-Check out other repos :
-
-- https://github.com/ykrmm/monuseg
-- https://github.com/nauyan/Segmentation
-- https://github.com/advaitkumar3107/MoNuSeg
