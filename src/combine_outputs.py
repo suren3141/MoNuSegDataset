@@ -9,7 +9,8 @@ def combine_output_single(img_file, label_file, sample_file):
     file_path, file_name = os.path.split(img_file)
     out_path = os.path.join(os.path.dirname(file_path), "combined")
 
-    if not os.path.exists(out_path): os.mkdir(out_path)
+    if not os.path.exists(out_path):
+        os.mkdir(out_path)
 
     out_name = os.path.join(out_path, file_name)
 
