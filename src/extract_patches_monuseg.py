@@ -67,10 +67,7 @@ if __name__ == "__main__":
     extract_type = "valid"  # Choose 'mirror' or 'valid'. 'mirror'- use padding at borders. 'valid'- only extract from valid regions.
 
     # data_root = "/mnt/dataset/MoNuSeg/dataset"
-    # data_root = "/mnt/dataset/MoNuSeg/dataset_col_aug"
     # data_root = "/mnt/dataset/MoNuSeg/TCGA/"
-    # save_root = f"/mnt/dataset/MoNuSeg/TCGA/patches_{extract_type}_inst"
-    # save_root = f"/mnt/dataset/MoNuSeg/patches_{extract_type}_inst"
 
     data_root = args.data_path
     save_root = f"{data_root}/patches_{extract_type}_inst"
