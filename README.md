@@ -31,7 +31,7 @@ dataset
 2. Convert `.xml` files to 2D binary and instance masks of format `.png` and `.tif`
 
 ```bash
-python src he_to_binary_mask.py --train_path $PATH_TO_TRAIN_SET --test_path $PATH_TO_TEST_SET
+python src/he_to_binary_mask.py --train_path $PATH_TO_TRAIN_SET --test_path $PATH_TO_TEST_SET
 ```
 
 The dataset should then have the following format
