@@ -71,8 +71,8 @@ def he_to_mask(im_file, xml_file, out_path=None):
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--train_path", type='str', default='/mnt/dataset/MoNuSeg/dataset/MoNuSegTrainingData')
-    parser.add_argument("--test_path", type='str', default='/mnt/dataset/MoNuSeg/dataset/MoNuSegTestData')
+    parser.add_argument("--train_path", type=str, default='/mnt/dataset/MoNuSeg/dataset/MoNuSegTrainingData')
+    parser.add_argument("--test_path", type=str, default='/mnt/dataset/MoNuSeg/dataset/MoNuSegTestData')
     args = parser.parse_args()
 
     return args
