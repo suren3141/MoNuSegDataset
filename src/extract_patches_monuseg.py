@@ -18,9 +18,6 @@ proj_dir = os.path.join(*Path(os.path.abspath(__file__)).parts[:-2])
 sys.path.append(proj_dir)
 sys.path.remove(os.path.join(proj_dir,'src'))
 
-print(sys.path)
-
-
 
 from misc.patch_extractor import PatchExtractor
 from misc.utils import rm_n_mkdir
@@ -40,6 +37,7 @@ def get_args():
     parser.add_argument("--data_path", type=str, default="/mnt/dataset/MoNuSeg/dataset")
     parser.add_argument("--window_size", type=int, default=128)
     parser.add_argument("--step_size", type=int, default=128)
+    parser.add_argument("--resize", type=int)
     args = parser.parse_args()
 
     return args
@@ -61,9 +59,16 @@ if __name__ == "__main__":
 
     win_size = [args.window_size, args.window_size]
     step_size = [args.step_size, args.step_size]
+    if args.resize is None:
+        resize = win_size
+    else:
+        resize = [args.resize, args.resize]
+
+
     # win_size = [128, 128]
     # step_size = [128, 128]
     # resize = [256, 256]
+
     extract_type = "valid"  # Choose 'mirror' or 'valid'. 'mirror'- use padding at borders. 'valid'- only extract from valid regions.
 
     # data_root = "/mnt/dataset/MoNuSeg/dataset"
@@ -117,7 +122,6 @@ if __name__ == "__main__":
                 ann = np.empty(img.shape[:2])[..., np.newaxis]
             if mask_ext is not None:
                 inst_mask = parser.load_mask("%s/%s%s" % (mask_dir, base_name, mask_ext), type_classification)
-                print(inst_mask.dtype)
             else:
                 inst_mask = np.empty(img.shape[:2])[..., np.newaxis]
 
@@ -143,8 +147,6 @@ if __name__ == "__main__":
                         Image.fromarray(ann_patch.astype(np.uint8)).resize(resize, Image.NEAREST).save(f"{out_dir}/bin_masks/{base_name}_{idx:03d}.png")
                     if mask_ext is not None:
                         Image.fromarray(mask_patch.astype(np.int16)).resize(resize, Image.NEAREST).save(f"{out_dir}/inst_masks/{base_name}_{idx:03d}.tif")
-                    # print(mask_patch.dtype)
-                    print(out_img.size)
 
                 elif out_format == '.npy':
                     np.save("{0}/{1}_{2:03d}.npy".format(out_dir, base_name, idx), patch)

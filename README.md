@@ -4,11 +4,17 @@ This repository is an extension of the [Mask R-CNN implementation](https://githu
 
 ## Dataset
 
-### Quick run
+### Direct download
 Dataset with extracted patches can be found in the following link:
 [Dataset](https://drive.google.com/drive/folders/1hUj9ToCYhIeIDOzfmj8BNp-BgLRRxbJX?usp=sharing)
 
 ### Step-by-step instruction
+
+First install the required packages
+```bash
+pip install -r requirements.txt
+```
+
 1. The original dataset can be downloaded from the following link: [https://monuseg.grand-challenge.org/Data/]
 
 The dataset should have the following structure:
