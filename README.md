@@ -2,11 +2,15 @@
 
 This repository is an extension of the [Mask R-CNN implementation](https://github.com/ruchikaverma-iitg/MoNuSeg) with functionality extended to python.
 
+<p align='center'>  
+  <img src='patch_gen.png'/>
+</p>
+
 ## Dataset
 
 ### Direct download
 Dataset with extracted patches can be found in the following link:
-[Dataset](https://drive.google.com/drive/folders/1hUj9ToCYhIeIDOzfmj8BNp-BgLRRxbJX?usp=sharing)
+[Dataset](https://drive.google.com/drive/folders/136PH4GK207rbSqLfjnezargbnHQEi6je?usp=sharing)
 
 ### Step-by-step instruction
 
